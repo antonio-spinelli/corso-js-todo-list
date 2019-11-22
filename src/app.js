@@ -53,8 +53,8 @@ export class App {
     }
   }
 
-  loadData() {
-    this.list = Storage.getData(STORAGE_KEY, []);
+  async loadData() {
+    this.list = await Storage.getData(STORAGE_KEY, []);
     this.refreshList();
   }
 
@@ -63,8 +63,8 @@ export class App {
     this.refreshList();
   }
 
-  init() {
-    this.loadData();
+  async init() {
+    await this.loadData();
 
     const addBtns = document.getElementsByClassName(this.addTodoBtnClass);
     for (let i = 0; i < addBtns.length; i++) {
