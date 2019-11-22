@@ -13,4 +13,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({ template: './src/index.html' })
   ],
+  devServer: {
+    contentBase: './dist',
+  }
 };
