@@ -7,8 +7,6 @@ export class App {
     this.listContainerId = options.listContainerId || null;
     this.todoInputId = options.todoInputId || null;
     this.addTodoBtnClass = options.addTodoBtnClass || null;
-
-    this.init();
   }
 
   refreshList() {
@@ -31,12 +29,12 @@ export class App {
 
   addTodo(title) {
     this.list.push(new TodoElement(title));
-    this.refreshList();
+    this.saveData();
   }
 
   removeTodo(todoElement) {
     this.list = this.list.filter(element => element.id !== todoElement.id);
-    this.refreshList();
+    this.saveData();
   }
 
   insertTodoElementFromInput() {
@@ -52,7 +50,25 @@ export class App {
     }
   }
 
+  loadData() {
+    const data = window.localStorage.getItem('todo-list');
+    try {
+      this.list = JSON.parse(data) || [];
+    } catch (error) {
+      this.list = [];
+    }
+    this.refreshList();
+  }
+
+  saveData() {
+    const data = JSON.stringify(this.list);
+    window.localStorage.setItem('todo-list', data);
+    this.refreshList();
+  }
+
   init() {
+    this.loadData();
+
     const addBtns = document.getElementsByClassName(this.addTodoBtnClass);
     for (let i = 0; i < addBtns.length; i++) {
       const addBtn = addBtns[i];

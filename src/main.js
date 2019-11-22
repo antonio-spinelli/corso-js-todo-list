@@ -6,5 +6,4 @@ const opts = {
   addTodoBtnClass: 'add-todo-btn'
 };
 const todoApp = new App(opts);
-
-todoApp.addTodo('comprare il latte');
+todoApp.init();
