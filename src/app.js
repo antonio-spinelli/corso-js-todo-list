@@ -44,7 +44,7 @@ export class App {
     if (!!inputElm) {
       const title = inputElm.value;
       if (!!title) {
-        todoApp.addTodo(title);
+        this.addTodo(title);
         inputElm.value = '';
       }
     } else {
@@ -57,7 +57,7 @@ export class App {
     for (let i = 0; i < addBtns.length; i++) {
       const addBtn = addBtns[i];
       addBtn.innerHTML = 'Inserisci TODO';
-      addBtn.onclick = this.insertTodoElementFromInput;
+      addBtn.onclick = this.insertTodoElementFromInput.bind(this);
     }
   }
 }
