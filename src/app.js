@@ -1,18 +1,17 @@
-class App {
-  list = [];
-  listContainerId = null;
-  todoInputId = null;
-  addTodoBtnClass = null;
+import { TodoElement } from './todo-element';
+
+export class App {
 
   constructor(options) {
-    this.listContainerId = options.listContainerId;
-    this.todoInputId = options.todoInputId;
-    this.addTodoBtnClass = options.addTodoBtnClass;
+    this.list = [];
+    this.listContainerId = options.listContainerId || null;
+    this.todoInputId = options.todoInputId || null;
+    this.addTodoBtnClass = options.addTodoBtnClass || null;
 
     this.init();
   }
 
-  refreshList = () => {
+  refreshList() {
     const listContainer = document.getElementById(this.listContainerId);
     listContainer.innerHTML = '';
 
@@ -28,19 +27,19 @@ class App {
         listContainer.appendChild(rowElm);
       }
     });
-  };
+  }
 
-  addTodo = (title) => {
+  addTodo(title) {
     this.list.push(new TodoElement(title));
     this.refreshList();
-  };
+  }
 
-  removeTodo = (todoElement) => {
+  removeTodo(todoElement) {
     this.list = this.list.filter(element => element.id !== todoElement.id);
     this.refreshList();
-  };
+  }
 
-  insertTodoElementFromInput = () => {
+  insertTodoElementFromInput() {
     const inputElm = document.getElementById(this.todoInputId);
     if (!!inputElm) {
       const title = inputElm.value;
@@ -51,14 +50,14 @@ class App {
     } else {
       throw 'Attenzione: input non trovato';
     }
-  };
+  }
 
-  init = () => {
+  init() {
     const addBtns = document.getElementsByClassName(this.addTodoBtnClass);
     for (let i = 0; i < addBtns.length; i++) {
       const addBtn = addBtns[i];
       addBtn.innerHTML = 'Inserisci TODO';
       addBtn.onclick = this.insertTodoElementFromInput;
     }
-  };
+  }
 }

@@ -4,8 +4,14 @@
   "description": "progetto per corso js",
   "main": "index.js",
   "scripts": {
+    "webpack": "webpack",
+    "build": "npm run webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Antonio Spinelli",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  }
 }

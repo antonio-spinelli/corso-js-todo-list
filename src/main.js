@@ -1,4 +1,4 @@
-const utils = new Utils();
+import { App } from './app';
 
 const opts = {
   listContainerId: 'list-container',
