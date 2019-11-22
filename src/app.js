@@ -1,4 +1,7 @@
 import { TodoElement } from './todo-element';
+import { Storage } from './storage';
+
+const STORAGE_KEY = 'todo-list';
 
 export class App {
 
@@ -51,18 +54,12 @@ export class App {
   }
 
   loadData() {
-    const data = window.localStorage.getItem('todo-list');
-    try {
-      this.list = JSON.parse(data) || [];
-    } catch (error) {
-      this.list = [];
-    }
+    this.list = Storage.getData(STORAGE_KEY, []);
     this.refreshList();
   }
 
   saveData() {
-    const data = JSON.stringify(this.list);
-    window.localStorage.setItem('todo-list', data);
+    Storage.setData(STORAGE_KEY, this.list);
     this.refreshList();
   }
 
